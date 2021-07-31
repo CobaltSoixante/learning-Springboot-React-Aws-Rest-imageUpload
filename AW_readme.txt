@@ -191,7 +191,8 @@ git push -u origin main # PUSH from our local repository to remote (EG github) r
 # 1. Make our changes at the client/IDE end.
 git add . # 2. Add all files in staging area AND downwards...
 git commit -m "..." # 3. Commit [locally] all modified files in the staging area.
-git push -u origin main # PUSH from our local repository to remote (EG github) repository.
+# -. Perform steps 1-3 repeatedly according to taste, I guess, and finally:
+git push -u origin main # 4. PUSH from our local repository to remote (EG github) repository.
 
 # BUT - for a more CONTROLLED practice - the way Github is MEANT to be used:
 # We continue by creating an individual branch for ourselves (or someone creates for us) for each of our individual milestones/features (one at a time, at the time we are working on the particular feature).
@@ -199,7 +200,12 @@ git push -u origin main # PUSH from our local repository to remote (EG github) r
 git branch # check which LOCAL branch you are on.
 git branch feature-a # CREATE a new branch from the CURRENT branch you are using (seems to stay on the same current branch...)
 git checkout feature-a # goto the branch u wanna get to
-# Do any work U want on the branch.
-git push -u origin feature-a	# takes the CURRENT branch, and uploads it to a feature-a branch on the REMOTE repository.
+#
+# And then:
+# 1. Do any work U want LOCALLY on the local copy of the branch via the IDE
+git add . # 2. Add all files in staging area AND downwards...
+git commit -m "..." # 3. Commit [locally] all modified files in the staging area.
+# -. Perform steps 1-3 repeatedly according to taste, I guess, and finally:
+git push -u origin feature-a # 4. takes the CURRENT branch, and uploads it to a feature-a branch on the REMOTE repository.
 
 12 - Facebook Create-react-app - 00:49:04
