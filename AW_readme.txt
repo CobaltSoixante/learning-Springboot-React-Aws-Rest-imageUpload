@@ -173,7 +173,7 @@ In our fake database/class-instance FakeUserProfileDataStore - we want to
 git init . # Create new git repository at current directory.
 git status # Shows current git branch and other stuff about the branch.
 git add . # Add all files in staging area AND downwards...
-git commit -m "first commit: backend only" # Commit [locally] all modified files in the staging area.
+git commit -m "..." # Commit [locally] all modified files in the staging area.
 git log # gives a terse commit history, including commit HASH, MESSAGE, DATE-TIME STAMP.
 git branch # tells u what branch ur on in ur local machine.
 git branch -M main # Renames ur current local branch to 'main' - EG from 'master' to 'main' (which we did in preparation for moving our local 'master' branch to out GITHUB 'main' branch,
@@ -181,9 +181,25 @@ git branch -M main # Renames ur current local branch to 'main' - EG from 'master
 git remote add origin https://github.com/CobaltSoixante/learning-Springboot-React-Aws-Rest-imageUpload # Specify the remote repository we will interact with from our local client.
 #
 # In my Github account MAIN page (that I log into with my password) - create a new repository:
-# learning-Springboot-React-Aws-Rest-imageUpload
+# learning-#Springboot-React-Aws-Rest-imageUpload
 # (EXCEPT FOR THE ABOVE NAME - ACCEPT all defaults (which basically means not adding a lot of stuff that u can add later)).
 #
 git push -u origin main # PUSH from our local repository to remote (EG github) repository.
+
+# At this point - if we only want to manipulate our main/master branch - we can just do the following:
+#
+# 1. Make our changes at the client/IDE end.
+git add . # 2. Add all files in staging area AND downwards...
+git commit -m "..." # 3. Commit [locally] all modified files in the staging area.
+git push -u origin main # PUSH from our local repository to remote (EG github) repository.
+
+# BUT - for a more CONTROLLED practice - the way Github is MEANT to be used:
+# We continue by creating an individual branch for ourselves (or someone creates for us) for each of our individual milestones/features (one at a time, at the time we are working on the particular feature).
+# As long as we are working locally - we'll need to (1) commit locally, (2) and ABSORB changes from the remote master/main - so we don't "fall out of step".
+git branch # check which LOCAL branch you are on.
+git branch feature-a # CREATE a new branch from the CURRENT branch you are using (seems to stay on the same current branch...)
+git checkout feature-a # goto the branch u wanna get to
+# Do any work U want on the branch.
+git push -u origin feature-a	# takes the CURRENT branch, and uploads it to a feature-a branch on the REMOTE repository.
 
 12 - Facebook Create-react-app - 00:49:04
