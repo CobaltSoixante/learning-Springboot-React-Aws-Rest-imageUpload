@@ -235,3 +235,6 @@ We now create the React FRONTEND (until now we were doing a Java backend).
     npx create-react-app frontend # "bootstrap" a basic React app in a subdirectory 'frontend'
     cd frontend
     npm start
+(*) while STILL in branch section12-Facebook-Create-React-App
+    git commit -m "facebook/create-react-app: Set up a modern web app ... - GitHub"
+(*) git push -u origin section12-Facebook-Create-React-App
