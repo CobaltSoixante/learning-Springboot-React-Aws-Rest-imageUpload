@@ -168,12 +168,15 @@ In our fake database/class-instance FakeUserProfileDataStore - we want to
         // 5. Store the image in S3 and update database with S3 image link
     }
 
-* - I am ready to upload the initial version of this project to Githup.
-    I am satisfied that my "secret" access key, or any keys - are unaccessable. The project still works.
+* - I am ready to upload the initial version of this project to Github.
+    I am satisfied that my "secret" access key, or any keys - are inaccessible. The project still works.
+
+# INITIAL STORE INTO A GITHUB MASTER/MAIN BRANCH
+# ==============================================
 git init . # Create new git repository at current directory.
 git status # Shows current git branch and other stuff about the branch.
 git add . # Add all files in staging area AND downwards...
-git commit -m "first commit: backend only" # Commit [locally] all modified files in the staging area.
+git commit -m "..." # Commit [locally] all modified files in the staging area.
 git log # gives a terse commit history, including commit HASH, MESSAGE, DATE-TIME STAMP.
 git branch # tells u what branch ur on in ur local machine.
 git branch -M main # Renames ur current local branch to 'main' - EG from 'master' to 'main' (which we did in preparation for moving our local 'master' branch to out GITHUB 'main' branch,
@@ -181,9 +184,57 @@ git branch -M main # Renames ur current local branch to 'main' - EG from 'master
 git remote add origin https://github.com/CobaltSoixante/learning-Springboot-React-Aws-Rest-imageUpload # Specify the remote repository we will interact with from our local client.
 #
 # In my Github account MAIN page (that I log into with my password) - create a new repository:
-# learning-Springboot-React-Aws-Rest-imageUpload
+# learning-#Springboot-React-Aws-Rest-imageUpload
 # (EXCEPT FOR THE ABOVE NAME - ACCEPT all defaults (which basically means not adding a lot of stuff that u can add later)).
 #
 git push -u origin main # PUSH from our local repository to remote (EG github) repository.
 
+# At this point - if we only want to manipulate our main/master branch - we can just do the following:
+#
+# 1. Make our changes at the client/IDE end.
+git add . # 2. Add all files in staging area AND downwards...
+git commit -m "..." # 3. Commit [locally] all modified files in the staging area.
+# -. Perform steps 1-3 repeatedly according to taste, I guess, and finally:
+git push -u origin main # 4. PUSH from our local repository to remote (EG github) repository.
+
+# PERSONAL LOCAL DEVELOPMENT BRANCH
+# =================================
+# BUT - for a more CONTROLLED practice: we use PERSONAL LOCAL BRANCHES - the way Github is MEANT to be used:
+# We continue by creating an individual TEMPORARY BRANCH for ourselves (or someone creates for us) for each of our individual milestones/features (one at a time, at the time we are working on the particular feature).
+# As long as we are working locally - we'll need to (1) commit locally, (2) and ABSORB changes from the remote master/main - so we don't "fall out of step".
+git branch # check which LOCAL branch you are on.
+git branch feature-a # CREATE a new branch from the CURRENT branch you are using (seems to stay on the same current branch...)
+git checkout feature-a # goto the branch u wanna get to
+#
+# And then:
+# 1. Do any work U want LOCALLY on the local copy of the branch via the IDE
+git add . # 2. Add all files in staging area AND downwards...
+git commit -m "..." # 3. Commit [locally] all modified files in the staging area.
+# -. Perform steps 1-3 repeatedly according to taste, I guess, and finally:
+git push -u origin feature-a # 4. takes the CURRENT branch, and uploads it to a feature-a branch on the REMOTE repository.
+
+# PERIODICALLY ASSIMILATING THE MAIN PROJECT BRANCH INTO YOUR LOCAL DEVELOPMENT BRANCH
+# ====================================================================================
+# WITH THE ABOVE APPROACH ("PERSONAL LOCAL DEVELOPMENT BRANCH") - we need to periodically (once a day or two) assimilate-consume-merge (whatever u wanna call it) our ongoing changes LOCALLY to the MASTER/MAIN REMOTE branch into our local feature-development branch -
+# so that we don't fall "out of touch" with the main corporate branch, and we can manually sync our local changes (LOCALLY) with the main remote branch,
+# so that when we are finally "reviewed by corporate" - checking us into the main branch is either seamless or without much effort.
+
 12 - Facebook Create-react-app - 00:49:04
+We now create the React FRONTEND (until now we were doing a Java backend).
+(*) We initially speed-track (boot-strap) our frontend React app" (we'll need Node.js installed for this - just so we have npx):
+    - In Google, search for 'create react app'
+    - The link for us is: "facebook/create-react-app: Set up a modern web app ... - GitHub"
+    - Go down on the page - you'll see:
+    #Quick Overview
+    npx create-react-app my-app
+    cd my-app
+    npm start
+    # wherever it says 'my-app' - replace with 'frontend' - this is our directory for the FRONTEND.
+(*) On our LOCAL machine/projects:
+    cd src/main  # This is where our projects already exists, the BACKEND already exists under the 'java' subdirectory.
+    npx create-react-app frontend # "bootstrap" a basic React app in a subdirectory 'frontend'
+    cd frontend
+    npm start
+(*) while STILL in branch section12-Facebook-Create-React-App
+    git commit -m "facebook/create-react-app: Set up a modern web app ... - GitHub"
+(*) git push -u origin section12-Facebook-Create-React-App
