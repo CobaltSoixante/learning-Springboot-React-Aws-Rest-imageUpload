@@ -226,10 +226,10 @@ We now create the React FRONTEND (until now we were doing a Java backend).
     - The link for us is: "facebook/create-react-app: Set up a modern web app ... - GitHub"
     - Go down on the page - you'll see:
     #Quick Overview
+    ### AW: wherever it says 'my-app' - replace with 'frontend' - this is our directory for the FRONTEND.
     npx create-react-app my-app
     cd my-app
     npm start
-    # wherever it says 'my-app' - replace with 'frontend' - this is our directory for the FRONTEND.
 (*) On our LOCAL machine/projects:
     cd src/main  # This is where our projects already exists, the BACKEND already exists under the 'java' subdirectory.
     npx create-react-app frontend # "bootstrap" a basic React app in a subdirectory 'frontend'
@@ -238,3 +238,55 @@ We now create the React FRONTEND (until now we were doing a Java backend).
 (*) while STILL in branch section12-Facebook-Create-React-App
     git commit -m "facebook/create-react-app: Set up a modern web app ... - GitHub"
 (*) git push -u origin section12-Facebook-Create-React-App
+(-) At REMOTE - am PULLING to main/master, until I figure out hot to REBASE my local to main/master.
+
+13 - Components and Axios - 00:53:36
+(-) By virtue of issuing the "npm start" command, our bare-bones React front end is visible on the browser on http://localhost:3000/ .
+(-) We are not using Intellij-Enterprise - which has Javascript support; rather - we are using IntelliJ-Community; so we use VS-Code for Javascript...
+(*) In VS-Code - Under [File, Open WorkSpace...] - I [open: D:\IdeaProjects\learning-Springboot-React-Aws-Rest-imageUpload\src\main\frontend] folder
+(*) in main/frontend/app.js - change "Learn React" to "Learn React Hello React" - will reflect immediately in the browser.
+(*) in " - delete entire header section - we don't need it. We'll see in browser that it is empty.
+(*) We download Axios - enables performing HTTP requests to backends.
+    - cancel all http servers in IntelliJ/Java and Source-Code front-end.
+    - Download axios from a terminal (00:56:00):            <------------------------------------------------
+      # Go to a regular terminal
+      cd /cygdrive/d/IdeaProjects/learning-Springboot-React-Aws-Rest-imageUpload/src/main/frontend
+      npm -S i axios # i stands for install
+      npm start # start the react-app server (also yields our - now -  blank client screen on http://localhost:3000/)
+(-) Lotta magic; mainly at VisualCode/App.js front-end/back-end(?) - AW: I don't think this is the backend: our SPRING-JAVA stuff is the back-end.
+...am now up to roughly 01:01:30: am getting the expected errors in browser; am resolving...
+# At first bad issues are apparent on the main browser client display itself ("no return statement" [from App.js::UserProfiles() - I guess the return of HTML code by a outer function/lambda (but not inner) is mandatory]);
+then - when things apparently look good, we detect further errors from the Chrome console display...
+# We get an error -
+Uncaught (in promise) Error: Network Error
+    at createError (createError.js:16)
+    at XMLHttpRequest.handleError (xhr.js:84)
+THIS is happening because the IntelliJ backend is not up-and-running, so we run it...
+# We now address a CORS error on the console:
+Access to XMLHttpRequest at 'http://localhost:8080/api/v1/user-profile' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+This is resolved ad-hoc by adding the @CrossOrigin annotation to UserProfileController.java:
+@RestController // 1st tier (API) of the app
+@RequestMapping("api/v1/user-profile")
+@CrossOrigin("*")   // Addresses a CORS problem we encounter at before 01:03:41 : this will allow strange hosts (other than the client) to communicate with us.
+    // Is not something we should normally do in production - but will enable our React component's backend to communicate with us for now.
+    // Instead of "*" (everything) we could have limited this to just "localhost:3000" (our React backend) - but - what the hell, we're just testing, lets enable everything.
+public class UserProfileController {...}
+# Restart IntelliJ (8080) (and React (3000) if necessary), refresh React 3000 client -
+No errors on console. Client main-screen just says "Hello", BUT - if I unfold the "{data: Array(2), status: 200, statusText: "", headers: {…}, config: {…}, …}" bit of the Console window: I see my 2 users:
+data: Array(2)
+0: {userProfileId: "59eb8bf1-ccef-4026-8ce4-1919efe5346a", username: "janetjones", userProfileImageLink: null}
+1: {userProfileId: "db188710-3653-4115-98da-258ef6676cd1", username: "antoniojunior", userProfileImageLink: null}
+length: 2
+[[Prototype]]: Array(0)
+===WHY is this getting logged to console? I guss because my App.js component is logging it, the component is embedded in the index.js file, and index.js embeds the App[.js] component (even though we never touched the index.js file).
+Magic: this entire React frontend is really a [node.js / npm ?] server (on local:3000) that spits out 2 things to the Chrome client:
+1. "Hello" - displayed on the Crome client main window.
+2. The 2 users data that are output to the console.
+And Nelson is saying "cool, we've managed to upload information from our backend (localhost:8080) and print it on the console (localhost:3000)":
+I am still trying to grasp what is happening here: we now seem to have 2 backends:
+1. IntelliJ/Java on localhost:8080 that is our TRUE backend and spits out user data to a client (as REST/json protocol/format)
+2. React on localhost:3000 that spits out the user data to the console of the Chrome tab accessing localhost:3000.
+I hope this gets clarified in sections to come.
+
+14 - Rendering User Profile - 01:04:50
+
