@@ -288,5 +288,28 @@ I am still trying to grasp what is happening here: we now seem to have 2 backend
 2. React on localhost:3000 that spits out the user data to the console of the Chrome tab accessing localhost:3000.
 I hope this gets clarified in sections to come.
 
-14 - Rendering User Profile - 01:04:50
+14 - Rendering User Profile - 01:04:50 (//#^ in App.js)
+Take the data-array we had been displaying to the "ersatz" Console screen, and display it to the proper browser clients screen
+See comments -
+//#^
+in frontend/App.js
+Too much magic: perhaps because of Axiom: it is probably a very active participant, but also very behind-the-scenes / invisible.
+
+15 - React Dropzone - 01:09:20
+Allows us to send/drop files to our server.
+See comments -
+//#+
+(*) On GITHUB goto react dropzone: https://github.com/react-dropzone/react-dropzone
+(*) Install as per site instructions:
+Installation
+Install it from npm and include it in your React build process (using Webpack, Browserify, etc).
+npm install --save react-dropzone # from my [frontend?] terminal - does it make a difference from where I install it?
+=> restart frontend again: npm start : get same 'ol.
+(*) For each user profile - we add the area to drop a image for each user:
+bit of code-stealing from GITHUB react-dropzone page
+(*) For each user add the <MyDropzone/> component we stole from GITHUB which we rename to Dropzone).
+
+
+16 - Pexels - 01:15:50
+
 
