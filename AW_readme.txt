@@ -311,5 +311,15 @@ bit of code-stealing from GITHUB react-dropzone page
 
 
 16 - Pexels - 01:15:50
+(*) pexels.com - download free images.
+
+17 - UI Logic to send files to backend - 01:18:32
+We want to upload our image files to our server. This deals with the frontend, ergo:
+(-1) not uploading image-file to S3 yet...
+(-2) not updating S3-image-file-ling in database yest...
+See comments -
+//#% 17 - UI Logic to send files to backend
+
+18 - Increase servlet max file size - 01:25:25
 
 

@@ -40,20 +40,43 @@ const UserProfiles = () => {
         <br/>
         <h1>{userProfile.username}</h1>
         <p>{userProfile.userProfileId}</p>
-        <Dropzone />
+        <Dropzone {...userProfile} />
         <br/>
       </div>
     );
   });
 };
 
-function Dropzone() {
+function Dropzone({userProfileId}/*#% 17*/) {
   const onDrop = useCallback(acceptedFiles => {
     // Do something with the files
     //#+ (15 - React Dropzone - 01:09:20)
     const file = acceptedFiles[0];
     console.log(file);
-  }, [])
+
+    //#% 17 - UI Logic to send files to backend
+    const formData = new FormData();  // We need this to send the file-details to the [React?] backecnd as a multipart file.
+    //#% 17 -  The quoted name "file" has to be the same as the quoted name "file" in UserProfileController.java:
+    formData.append("file", file);
+
+    //#% 17 - Now that we have the mltilpart-file data incorporated in our form-data - use Axios to backend:
+    // AW: note use of back-ticks here - not sure why.
+    // In the POST from the client, we pass "Content-Type": "multipart/form-data" - 
+    // because - as u recall from UserProfileConctroller.java - the @PostMapping function on the server/backend accepts consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    axios.post(
+      `http://localhost:8080/api/v1/user-profile/${userProfileId}/image/upload`, // 01:22:14 : see @PostMapping in UserProfileController.java
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }
+    ).then(() => {
+      console.log("file uploaded successfully");
+    }).catch(err => {
+      console.log(err);
+    });
+  }, []);
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   return (
@@ -65,8 +88,8 @@ function Dropzone() {
           <p>Drag 'n' drop profile image, or click to select profile image</p>
       }
     </div>
-  )
-}
+  );
+} // function Dropzone({UserProfileId}/*#% 17*/)
 
 function App() {
   return (
