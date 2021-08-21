@@ -44,6 +44,7 @@ public class UserProfileController {
     )
     public void uploadUserProfileImage(@PathVariable("userProfileId") UUID userProfileId,
                                        @RequestParam("file") MultipartFile file) {
-        userProfileService.uploadUserProfileImage(userProfileId, file);
+        userProfileService.uploadUserProfileImage(userProfileId, file); // sec-19 encourages us to implement the logic here ourselves, sec-20 provides the answer.
+        System.out.println("uploadUserProfileImage: " + file);  // aw: added for diagnostic purposes.
     }
 }

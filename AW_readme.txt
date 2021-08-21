@@ -309,7 +309,6 @@ npm install --save react-dropzone # from my [frontend?] terminal - does it make 
 bit of code-stealing from GITHUB react-dropzone page
 (*) For each user add the <MyDropzone/> component we stole from GITHUB which we rename to Dropzone).
 
-
 16 - Pexels - 01:15:50
 (*) pexels.com - download free images.
 
@@ -321,5 +320,26 @@ See comments -
 //#% 17 - UI Logic to send files to backend
 
 18 - Increase servlet max file size - 01:25:25
+(*) Try drag-and-drop AntonioJunior imaje file:
+On the front-end server (React :3000) console we see errors.
+On the bacc-end server (IntelliJ :8080) console we see: The field file exceeds its maximum permitted size of 1048576 bytes...
+(*) So we gotta override some defaults:
+in the [currently empty] resources/application.properties insert the line
+spring.servlet.multipart.max-file-size=50MB
 
+19 - Exercise - 01:29:35
+... Where we get told to implement the logic of UserProfileSerice.java::uploadUserProfileImage on our own - as an exercise.
+    /**
+     *
+     * @param userProfileId
+     * @param file
+     */
+    /*public - is default*/ void uploadUserProfileImage(UUID userProfileId, MultipartFile file) {
+        // 1. Check if image is not empty
+        // 2. Check if file is an image
+        // 3. Check if the user exists in our database
+        // 4. Grab some metadata from file - if any
+        // 5. Store the image in S3 and update database (userProfileImageLink) with S3 image link
+    }
 
+20 - Lets Implement uploadUserProfileImage() - 01:31:02
