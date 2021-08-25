@@ -343,3 +343,5 @@ spring.servlet.multipart.max-file-size=50MB
     }
 
 20 - Lets Implement uploadUserProfileImage() - 01:31:02
+
+21 - Lets test things - 01:44:42 - 01:44:42

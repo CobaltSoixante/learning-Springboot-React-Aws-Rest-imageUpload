@@ -14,7 +14,7 @@ import java.util.Optional;
  * uses package com.rosewine.awsimageupload.config; to get the S3 client -
  * to facilitate in storing LOCAL images to our selected S3 BUCKET.
  * NOTE:
- * 1. We may theoretically have several S3 buckets. In this course - there is only one, it is dedicated to storinging images.
+ * 1. We may theoretically have several S3 buckets. In this course - there is only one, it is dedicated to storing images.
  * 2. Each S3 bucket may have many paths/folders - like a directory. I think that we only use a root-path - or somesuch - in this course, and the bucket contains only employee image-files.
  */
 @Service    // indicates that this is the 2nd tier - the Service/business-logic tier - in our backend.
