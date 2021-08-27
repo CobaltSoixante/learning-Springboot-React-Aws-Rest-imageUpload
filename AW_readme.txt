@@ -344,4 +344,19 @@ spring.servlet.multipart.max-file-size=50MB
 
 20 - Lets Implement uploadUserProfileImage() - 01:31:02
 
-21 - Lets test things - 01:44:42 - 01:44:42
+21 - Lets test things - 01:44:42
+NOTE: =====> I did not implement a lot of Nelson's mods here: they are mostly
+(1) beautifications
+(2) a HTTP 500 error that seemed to get resolved by simply replacing file.getname() with file.getOriginalFileame, without all the other crap
+    in UserProfileService::uploadUserProfileImage() in step-5 in the business logic.
+
+22 - Set user profile image link - 01:53:41
+Our "great" departure here will be to hardcode the UUID's of our users (janetjackson & antoniojunior)
+so we can create a PREDICTABLE user-profile-image-link that we can update in our database.
+
+23 - Lets implement download() images - 01:59:02 <---
+
+24 - Implement download images on frontend - 02:28:25 <---
+
+25 - Final touches - 02:13:15 <---
+The images re downloaded in previous chapter are very big: we need to resize them. <---

@@ -132,12 +132,13 @@ public class UserProfileService {
             String path = String.format("%s/%s", BucketName.PROFILE_IMAGE.getBucketName(), user.getUserProfileId());
             String filename = String.format("%s-%s-%s",
                     file.getOriginalFilename(),
-                    UUID.randomUUID(),   // tacking on a random ID means we don't OVERWRITE the previous file - thus, we have a HISTORY of files downloaded in our S3 bucket.
-                    file.getOriginalFilename()  // Tacking this on IN ADDITION to Nelson's original spec - so file-name ends with .jpg/.png etc - easier to directly MANUALLY download from the S3 bucket.
+                    UUID.randomUUID(),   // Nelson: tacking on a random ID means we don't OVERWRITE the previous file - thus, we have a HISTORY of files downloaded in our S3 bucket.
+                    file.getOriginalFilename()  // aw: Tacking this on IN ADDITION to Nelson's original spec - so file-name ends with .jpg/.png etc - easier to directly MANUALLY download from the S3 bucket.
             );
 
             try {
                 fileStore.save(path, filename, Optional.of(metadata), file.getInputStream());
+                user.setUserProfileImageLink(filename); // 22 - Set user profile image link - 01:53:41
             } catch (IOException e) {
                 throw new IllegalStateException(e);
             }

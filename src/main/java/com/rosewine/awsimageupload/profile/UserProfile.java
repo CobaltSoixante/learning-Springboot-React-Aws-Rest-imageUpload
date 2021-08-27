@@ -8,8 +8,11 @@ import java.util.UUID;
  * Actual CLASS for the "user" - the core "protagonist" of our application.
  */
 public class UserProfile {
-    private UUID userProfileId;
-    private String username;
+    // 22 - Set user profile image link - 01:53:41: the following fields become 'final', as they could should have been all along:
+    private final UUID userProfileId;
+    private final String username;
+
+    // 22 - Set user profile image link - 01:53:41: the following field remains "settable" because of our temporary-database/image-link shenanigans.
     private String userProfileImageLink;    // S3 key
 
     public UserProfile(
@@ -26,17 +29,13 @@ public class UserProfile {
         return userProfileId;
     }
 
-    public void setUserProfileId(UUID userProfileId) {
-        this.userProfileId = userProfileId;
-    }
+    //public void setUserProfileId(UUID userProfileId) { this.userProfileId = userProfileId; }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    //public void setUsername(String username) { this.username = username; }
 
     /**
      * In section
