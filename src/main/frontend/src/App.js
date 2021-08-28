@@ -35,7 +35,7 @@ const UserProfiles = () => {
     //#^ AW: Sec 14: lotta magic: what's happening here? - Where is "userProfile" coming from? Axios?
     return (
       <div key={index}>
-        {/* todo: profile image...*/ /*24 - Implement download images on frontend: now gwtting done: */}
+        {/* todo: profile image...*/ /*24 - Implement download images on frontend: now getting done: */}
         {userProfile.userProfileId ? (
           <img
             src={`http://localhost:8080/api/v1/user-profile/${userProfile.userProfileId}/image/download`}

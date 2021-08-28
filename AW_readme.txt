@@ -359,5 +359,17 @@ so we can create a PREDICTABLE user-profile-image-link that we can update in our
 24 - Implement download images on frontend - 02:08:23
 Modify the React/JS frontend to actually DISPLAY the image stored for each user in our S3 bucket.
 
-25 - Final touches - 02:13:15 <---
+25 - Final touches - 02:13:15
 The images re downloaded in previous chapter are very big: we need to resize them. <---
+(*) In app.css (in frontend) add at end:
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+Our images are now nice and terse and circular!
+(*) And then we do a few other minor things...
+(*) Now - add mechanism so that when we drop a new picture - it will be updated in REALTIME (is an exercise left to the user).
+
+26 - Lets wrap it up - 02:18:36
