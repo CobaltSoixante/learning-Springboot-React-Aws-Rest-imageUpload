@@ -64,7 +64,7 @@ function Dropzone({userProfileId}/*#% 17*/) {
     //#% 17 -  The quoted name "file" has to be the same as the quoted name "file" in UserProfileController.java:
     formData.append("file", file);
 
-    //#% 17 - Now that we have the mltilpart-file data incorporated in our form-data - use Axios to backend:
+    //#% 17 - Now that we have the multipart-file data incorporated in our form-data - use Axios to backend:
     // AW: note use of back-ticks here - not sure why.
     // In the POST from the client, we pass "Content-Type": "multipart/form-data" - 
     // because - as u recall from UserProfileConctroller.java - the @PostMapping function on the server/backend accepts consumes = MediaType.MULTIPART_FORM_DATA_VALUE
@@ -78,6 +78,7 @@ function Dropzone({userProfileId}/*#% 17*/) {
       }
     ).then(() => {
       console.log("file uploaded successfully");
+      window.location.reload(false); // AW: auto reload image/doc: true reloads from server, false - from cache.
     }).catch(err => {
       console.log(err);
     });

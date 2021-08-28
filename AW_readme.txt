@@ -372,4 +372,7 @@ Our images are now nice and terse and circular!
 (*) And then we do a few other minor things...
 (*) Now - add mechanism so that when we drop a new picture - it will be updated in REALTIME (is an exercise left to the user).
 
+25.1 - aw: My humble attempt at auto-reload of page when image has changed: works, should probably be modernized: getting ALL images (instead of only the one modified - sucks).
+
 26 - Lets wrap it up - 02:18:36
+'nuff said.'
