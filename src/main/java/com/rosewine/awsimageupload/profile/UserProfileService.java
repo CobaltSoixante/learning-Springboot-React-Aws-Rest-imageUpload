@@ -104,12 +104,7 @@ public class UserProfileService {
             }
         }
         else {
-            user = userProfileDataAccessService
-                    .getUserProfiles()  // returns List<UserProfile>: this is the list we are going through.
-                    .stream()   // Nelson: streams are very powerful, and we should all be using them.
-                    .filter(userProfile -> userProfile.getUserProfileId().equals(userProfileId))
-                    .findFirst()    // Just find the 1st one (should be only one)
-                    .orElseThrow(() -> new IllegalStateException(String.format("User profile %s not found", userProfileId)));
+            user = getUserProfileOrThrow(userProfileId);
         }
 
         // 4. Grab some metadata from file - if any - 01:37:55
@@ -147,4 +142,30 @@ public class UserProfileService {
 
     }
 
+    // 23 - Lets implement download() images - 01:59:02
+    public byte[] downloadUserProfileImage(UUID userProfileId) {
+        // a- Check if userProfileId exists
+        UserProfile user = getUserProfileOrThrow(userProfileId);
+
+        String path = String.format(
+                "%s/%s",
+                BucketName.PROFILE_IMAGE.getBucketName(),   // bucket: rosewine-image-upload-123
+                user.getUserProfileId() // user directory inside the bucket
+        );
+
+        return user.getUserProfileImageLink()   // getUserProfileImageLink() returns filename inside rosewine-image-upload-123/uuid
+                .map(key -> fileStore.download(path, key))  // key = actual file/link name
+                .orElse(new byte[0]);
+    }
+
+    private UserProfile getUserProfileOrThrow(UUID userProfileId) {
+        UserProfile user;
+        user = userProfileDataAccessService
+                .getUserProfiles()  // returns List<UserProfile>: this is the list we are going through.
+                .stream()   // Nelson: streams are very powerful, and we should all be using them.
+                .filter(userProfile -> userProfile.getUserProfileId().equals(userProfileId))
+                .findFirst()    // Just find the 1st one (should be only one)
+                .orElseThrow(() -> new IllegalStateException(String.format("User profile %s not found", userProfileId)));
+        return user;
+    }
 }

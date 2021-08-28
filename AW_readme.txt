@@ -354,9 +354,10 @@ NOTE: =====> I did not implement a lot of Nelson's mods here: they are mostly
 Our "great" departure here will be to hardcode the UUID's of our users (janetjackson & antoniojunior)
 so we can create a PREDICTABLE user-profile-image-link that we can update in our database.
 
-23 - Lets implement download() images - 01:59:02 <---
+23 - Lets implement download() images [IntelliJ backend] - 01:59:02 <*** UserProfileService::downloadUserProfileImage - bears looking into
 
-24 - Implement download images on frontend - 02:28:25 <---
+24 - Implement download images on frontend - 02:08:23
+Modify the React/JS frontend to actually DISPLAY the image stored for each user in our S3 bucket.
 
 25 - Final touches - 02:13:15 <---
 The images re downloaded in previous chapter are very big: we need to resize them. <---

@@ -52,5 +52,10 @@ public class UserProfileController {
             e.printStackTrace();
             System.exit(1);
         }
-    }
+    }   // uploadUserProfileImage
+
+    @GetMapping(path = "{userProfileId}/image/download")
+    public byte[] downloadUserProfileImage(@PathVariable("userProfileId") UUID userProfileId) {
+        return userProfileService.downloadUserProfileImage(userProfileId);
+    }   // downloadUserProfileImage
 }
